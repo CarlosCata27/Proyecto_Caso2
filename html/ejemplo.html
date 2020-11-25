@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="CuerpoC">
+        <header class="contentH">
+            <div class="flexbox">
+                <img class="imgcicata" src="../Recursos/cicata.png" alt="">
+                <img class = "imggob" src = "../Recursos/pleca-gob.png" alt = "">
+                <a href = "https://www.ipn.mx/" class>
+                    <img class="imgpoli" src="../Recursos/ipn.png" alt=""> 
+                    <p class = "d-inline-block titulo_logo">
+                    Instituto Politecnico Nacional
+                    <br>
+                    <span class = "tecnica">"La Técnica al Servicio de la Patria"</span>
+                    </p>
+                </a>
+            </div>
+        </header>
+    </div>
+
+    <div class="main-form-center"> 
+      <form>
+        <!--<form>-->
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="Mestria"> Maestria:</label>
+                  <input type="text" class="form-control" id="Maestria" placeholder="Ingrese el nombre de su maestria" required>
+                </div>
+            </div>
+            <h4>I. Datos generales</h4>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Nombre">a) Nombre:</label>
+                  <input type="text" class="form-control" id="Nombre" placeholder="Ingrese su nombre completo empezando por apellido">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="LugarNacimiento">b) Lugar de nacimiento:</label>
+                  <input type="text" class="form-control" id="LugarNacimiento" placeholder="Ingrese el pais donde nació">
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="FechaNacimiento">Fecha de nacimiento:</label>
+                  <input type="date" class="form-control" id="FechaNacimiento" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Direccion">c) Direccion:</label>
+                <input type="text" class="form-control" id="Direccion" placeholder="ingrese su direccion: ej. Montes Pirineos 7, Jardines de Morelos, Ecatepec de Morelos, Estado de México">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label for="NumeroCel">d) Numero de celular:</label>
+                  <input type="text" class="form-control" id="NumeroCel" placeholder="ej. 55-5555-5555">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="Nacionalidad">e) Nacionalidad:</label>
+                  <input type="text" class="form-control" id="Nacionalidad" placeholder="Ingrese su nacionalidad">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="EstadoCivil">f) Estado Civil:</label>
+                    <select id="EstadoCivil" class="form-control">
+                        <option value="no">Seleccione uno...</option>
+                        <option value="Soltero">Soltero(a)</option>
+                        <option value="Casado">Casado(a)</option>
+                        <option value="Separado">Separado(a)</option>
+                        <option value="Divorciado">Divorciado(a)</option>
+                        <option value="Viúdo">Viúdo(a)</option>
+                        <option value="Amasiado">Amasiado(a)</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="CURP">g) CURP:</label>
+                    <input type="text" class="form-control" id="CURP" placeholder="ej. MAHJ280603MSPRRV09">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="CuentaP">h) Cuenta de correo electronico:</label>
+                  <input type="email" class="form-control" id="CuentaP" placeholder="Ingrese una cuenta de contacto">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="CuentaS">Cuenta de Skype:</label>
+                  <input type="email" class="form-control" id="CuentaS" placeholder="Ingrese su cuenta de SKYPE">
+                </div>
+            </div>
+        <!--</form>-->
+        <!--<form>-->
+            <h4>II. Informacion general</h4>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                  <label for="Institucion">a)Institución donde ha realizado sus estudios profesionales:</label>
+                  <input type="text" class="form-control" id="Institucion" placeholder="Ingrese el nombre de la institucion donde realizo sus estudios">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="Titulado">b) Titulado:</label>
+                  <input type="text" class="form-control" id="Titulado" placeholder="Ingrese el titulo universitario que tiene">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="Carrera">Carrera:</label>
+                  <input type="text" class="form-control" id="Carrera" placeholder="Ingrese la Carrera universitaria">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="PaisInst">Pais de la institucion:</label>
+                    <input type="text" class="form-control" id="PaisInst" placeholder="Ingrese el pais donde realizo sus estudios">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ExperienciaP">c) Experiencia profesional:</label>
+                <textarea class="form-control" id="ExperienciaP" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ExperienciaD">d) Experiencia docente:</label>
+                <textarea class="form-control" id="ExperienciaD" rows="3"></textarea>
+            </div>
+            <div class="form-group" id="div_e">
+                <label for="Pregunta1">e) ¿Has asistido a los cursos propedéuticos de este Departamento anteriormente?</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio1" onclick="radioClicked()" value="Opcion1">
+                    <label class="form-check-label" for="Radio1">Si</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio2" onclick="radioClicked()" value="Opcion2">
+                    <label class="form-check-label" for="Radio2">No</label>
+                  </div>
+            </div>
+            <!-- <div class="form-row" id="años">
+                <div class="form-group col-md-3">
+                  <label for="Anio1">De que año a que año?</label>
+                  <input type="number" class="form-control" id="Anio1" placeholder="ej.2000">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="Anio2">‎      ‏‏‎</label>
+                  <input type="number" class="form-control" id="Anio2" placeholder="ej.2005">
+                </div>
+            </div> -->
+            <div class="form-group" id="m">
+                <label for="Motivo">c) Motivo por el cual deseas ingresar al posgrado:</label>
+                <textarea class="form-control" id="Motivo" rows="3"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-7">
+                    <label for="Linea">A que linea de investigacion deseas ingresar?:</label>
+                    <select id="Linea" class="form-control">
+                        <option value="no">Seleccione uno...</option>
+                        <option value="DeM">Docencia en matemáticas</option>
+                        <option value="DdlF">Didáctica de la Física</option>
+                        <option value="TICEF">Tecnologías de la Información y la Comunicación en la Enseñanza de la Física.</option>
+                        <option value="FD">Formación Docente</option>
+                    </select>
+                </div>
+            </div>
+            <!--Anexar aqui el archivo-->
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="CurriculumV" lang="es">
+              <label class="custom-file-label" for="CurriculumV">Selecciones el archivo de su CV</label>
+            </div>
+            <!--Anexar aqui el archivo-->
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label for="FechaHoy">Fecha de hoy:</label>
+                  <input type="date" class="form-control" id="FechaHoy" disabled>
+                </div>
+                <div class="form-group col-md-10">
+                  <label for="Firma">Ingrese su firma electronica:</label>
+                  <input type="text" class="form-control" id="Firma" >
+                </div>
+            </div>
+        <!--</form>-->
+        <div class="PosButton">
+          <button class="btn btn-primary" type="submit">Enviar Formulario</button>
+        </div>
+      </form>
+    </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../scripts/script.js"></script>
+<script src="../scripts/ejemplo.js"></script>
+</div>
+
+</body>
+</html>

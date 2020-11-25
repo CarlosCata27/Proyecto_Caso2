@@ -1,0 +1,199 @@
+@import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
+.Form-Programas{
+    display:flex;
+    justify-content: center;
+}
+.confirmar{
+    display:flex;
+    justify-content: center;
+    margin-top: 7px;
+}
+
+body{
+    background-color:#800040;
+}
+.contentH{
+    margin: 0 auto;
+
+  }
+
+.flexbox{
+    display: flex;
+    font: 14px Arial;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    min-width: 90%; 
+}
+.imgpoli{
+    margin: 2px;
+    width: 105px;
+}
+
+.imggob
+{
+    margin: 4px;
+    width: 625px;
+    height: 150px;
+    position: relative;
+}
+
+.d-inline-block
+{
+    display: inline-block!important;
+}
+
+.titulo_logo .tecnica
+{
+    font-size: 14px;
+    position: relative;
+    top: -4px;
+}
+
+.titulo_logo
+{
+    font-size: 18px;
+    color: #424141;
+    position: relative;
+    top: 34px;
+}
+
+.titulo_logo:hover
+{
+    color: #868e96;
+}
+
+.imgcicata{
+    margin: 4px;
+    width: 110px;
+    height: 120px;
+}
+
+.txttitle{
+    text-align: center;
+}
+.subtitulo{
+    text-align: center;
+}
+
+.CuerpoC{
+    background-color:#FFFFFF;
+    width: 100%;
+    padding: 15px;
+}
+
+.main-form-center {
+    margin: 15px;
+    background: #FFFFFF;
+    border: 1px solid #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width: 98%;
+    
+}
+
+.DisMas {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.Mae input {
+    font-family: sans-serif;
+  background: #f5f5f5;
+  width: 75%;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
+#maestria{
+    font-family: sans-serif;
+  background:  #f5f5f5;
+  width: 25%;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+#nombre{
+    font-family: sans-serif;
+  background:  #f5f5f5;
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
+.DisMas select{
+  font-family: sans-serif;
+  background:  rgb(145, 142, 142);
+  width: 300px;
+  border: 1px rgb(122, 118, 118);
+  border-radius: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 3px;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+.acomodoF{
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    width: 100%;
+}
+
+#fecha_de_nacimiento{
+    width:200px;
+    margin-left: 25px;
+}
+#estado{
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.error 
+{
+    width : 100%;
+    padding: 0;
+    font-size: 80%;
+    color: #900;
+    /* background-color: #900; */
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.PosButton{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Estilo{
+    font-family: sans-serif;
+    background: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+.ContenedorNav{
+    margin-bottom: 10px;
+    background-color:gray;
+    width: 100%;
+}
