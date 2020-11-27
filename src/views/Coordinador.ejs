@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/header%>
+</head>
+<body>
+    <% include partials/Cabecera %>
+
+    <div class="main-form-center">
+        <table class="table">
+            <caption>Solicitudes Enviadas</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Estado de Validacion</th>
+                <th scope="col">Validar</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!-- Contenido de la tabla (se hara con js)-->
+                <tr>
+                    <!-- Ejemplo de contenido -->
+                    <th scope="row">1</th>
+                    <td>Mark Buzany Ramirez</td>
+                    <td>Doctorado</td>
+                    <td>Sin validar</td>
+                    <td><button>Validar</button></td>
+                  </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <% include partials/Scripts%>
+</body>
+</html>

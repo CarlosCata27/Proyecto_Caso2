@@ -69,7 +69,9 @@
 
   </div>-->
   <div class="main-form-center">
-    <form id="Maestria" method="POST" target="maestria" class="needs-validation" novalidate>
+    <% include partials/Seleccion %>
+    <!--Formulario de maestria-->
+    <form id="Maestria" method="POST" target="/new-entry" class="needs-validation" style="display:none;" novalidate>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-datos" aria-selected="true">Datos Generales</a>
@@ -81,13 +83,36 @@
           <% include partials/DatosGM%>
         </div>
         <div class="tab-pane fade" id="nav-informacion" role="tabpanel" aria-labelledby="nav-informacion-tab">
-          
+          <% include partials/infGM%>
         </div>
       </div>
       <div class="form-group">
         <input type="submit" value="Enviar" class="btn btn-primary">
       </div>
     </form>
+    <!--Terminar formulario de maestria-->
+
+    <!--Formulario de doctorado-->
+    <form id="Doctorado" method="POST" target="" class="needs-validation" style="display:none;" novalidate>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-datos-tabD" data-toggle="tab" href="#nav-datosD" role="tab" aria-controls="nav-datosD" aria-selected="true">Datos Generales</a>
+        <a class="nav-item nav-link" id="nav-informacion-tabD" data-toggle="tab" href="#nav-informacionD" role="tab" aria-controls="nav-informacionD" aria-selected="false">Informacion General</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-datosD" role="tabpanel" aria-labelledby="nav-datos-tabD">
+          <% include partials/DatosGD%>
+        </div>
+        <div class="tab-pane fade" id="nav-informacionD" role="tabpanel" aria-labelledby="nav-informacion-tabD">
+          <% include partials/infGD%>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Enviar" class="btn btn-primary">
+      </div>
+    </form>
+    <!--Terminar formulario de doctorado-->
   </div>
   <% include partials/Scripts%>
   <% include partials/footer%>

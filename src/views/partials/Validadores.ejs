@@ -1,0 +1,24 @@
+<div class="mb-3">
+    <label for="validationTextarea">Comentario</label>
+    <textarea class="form-control" id="validationTextarea" placeholder="Ingrese algun comentario al solicitante" required></textarea>
+    <div class="invalid-feedback">
+      Debe darle algun comentario al solicitante.
+    </div>
+  </div>
+
+  <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required>
+    <label class="custom-control-label" for="customControlValidation1">Aceptar</label>
+  </div>
+  <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
+    <label class="custom-control-label" for="customControlValidation2">Rechazar</label>
+  </div>
+  <div class="custom-control custom-radio mb-3">
+    <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
+    <label class="custom-control-label" for="customControlValidation3">Condicionar</label>
+    <div class="invalid-feedback">Debe seleccionar una validacion</div>
+  </div>
+  <div class="PosButton">
+    <button class="btn btn-primary" type="submit">Validar</button>
+  </div>

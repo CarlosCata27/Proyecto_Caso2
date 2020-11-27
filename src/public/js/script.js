@@ -24,19 +24,16 @@ const confirm = document.getElementById("");
 //Funcion para especificar que tamaño debe tener los documentos.
 function Mostrar_Tamano()
 {
-    var entrada = document.getElementById('CV');
+    var entrada = document.getElementById('cv');
     if(!entrada.files[0])
     {
         documento_error.textContent = 'Debe subir un archivo antes de pulsar el boton Cargar';
     }
-
     else
     {
-        
         documento_error.innerHTML = '';
         documento_error.className = 'error';
-
-        var datos = document.getElementById("CV").files[0];
+        var datos = document.getElementById("cv").files[0];
         //megas = parseInt(datos.size, 10);
         tamaño = datos.size / 1000000;
         var checador = Verificar_Longitud(tamaño);
