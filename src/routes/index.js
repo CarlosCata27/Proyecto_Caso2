@@ -2,16 +2,45 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const uuidv4 = require('uuid/v4');
+const glob = require('glob');
+const Glob = glob.Glob;
+
+
+var _inArray = function(needle, haystack) {
+  for(var k in haystack) {
+    if(haystack[k] === needle) {
+      return true;
+    }
+  }
+  return false;
+}
+
+var datosD=[];
+
+glob("src/views/Doctorado/*.json",function(err,files){
+  if(err) {
+    console.log("cannot read the folder, something goes wrong with glob", err);
+  }
+  files.forEach(function(file) {
+    fs.readFile(file, 'utf-8', function (err, data) { // Read each file
+      if(err) {
+        console.log("cannot read the file, something goes wrong with the file", err);
+      }
+      
+      var obj = JSON.parse(data);
+      datosD.push(obj);
+    });
+  });
+});
 
 const json_datos = fs.readFileSync('src/datos.json', 'utf-8');
 let datos = JSON.parse(json_datos);
 
-const json_datosD = fs.readFileSync('src/datosDoctorado.json', 'utf-8');
-let datosD = JSON.parse(json_datosD);
-
 router.get('/', (req, res) => {
   res.render('index', { datos,datosD });
 });
+
+
 
 router.get('/new-entry', (req, res) => {
   res.render('new-entry');
@@ -92,23 +121,29 @@ router.post('/new-entry2', (req, res) => {
   };
 
   // add a new doctor to the array
-  datosD.push(newDoctor);
 
   // saving the array in a file
-  const json_datos = JSON.stringify(datosD);
-  fs.writeFileSync('src/datosDoctorado.json', json_datos, 'utf-8');
+  const json_datos = JSON.stringify(newDoctor);
+  fs.writeFile('src/views/Doctorado/'+CURPD+'.json', json_datos, 'utf-8',function (err) {
+    if (err) throw err;
+    console.log('File is created successfully.');
+  });
 
   res.redirect('/');
 });
 
-router.get('/delete2/:id', (req, res) => {
-  datosD = datosD.filter(alumno => alumno.id != req.params.id);
-
+router.get('/delete2/:CURPD', (req, res) => {
+  datosD = datosD.filter(alumno => alumno.CURPD != req.params.CURPD);
   // saving data
-  const json_datosD = JSON.stringify(datosD);
-  fs.writeFileSync('src/datosDoctorado.json', json_datosD, 'utf-8');
-
-  res.redirect('/')
+  fs.unlink('src/views/Doctorado/'+req.params.CURPD+'.json',(err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+  
+    //file removed
+  });
+  res.redirect('/');
 });
 
 module.exports = router;
