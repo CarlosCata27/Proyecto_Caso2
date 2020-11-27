@@ -35,7 +35,38 @@
 
     <%} else {%>
     <div class="card card-body text-center">
-      <p>No Alumnos yet. <a href="/new-entry">Add A New One</a></p>
+      <p>No student yet. <a href="/new-entry">Add A New One</a></p>
+    </div>
+    <%}%>
+    </div>
+  </div>
+
+  <div class="container p-4">
+    <div class="row">
+
+    <%if (datosD.length > 0) {%>
+
+    <% datosD.forEach(function(alumno) { %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <%= alumno.nombreD %>
+        </div>
+        <div class="card card-body">
+          <%= alumno.correoD %>
+        </div>
+        <div class="card-footer">
+          <a href="/delete2/<%= alumno.id %>" class="btn btn-danger btn-block">
+            Eliminar
+          </a>
+        </div>
+      </div>
+    </div>
+    <%})%>
+
+    <%} else {%>
+    <div class="card card-body text-center">
+      <p>No PHD student yet. <a href="/new-entry">Add A New One</a></p>
     </div>
     <%}%>
     </div>
