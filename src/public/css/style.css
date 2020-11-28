@@ -197,3 +197,20 @@ body{
     background-color:gray;
     width: 100%;
 }
+
+.Grueso label{
+    font-weight: bold;
+}
+
+.Grueso input{
+    border-bottom: 3px solid#800040;
+}
+
+.Grueso #Atxt{
+    border: 1.5px solid black;
+}
+
+.Grueso #status{
+    border: 2px solid blue;
+    border-radius: 7px;
+}

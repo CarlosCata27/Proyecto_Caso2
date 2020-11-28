@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/header%>
+</head>
+<body>
+    <% include partials/Cabecera %>
+
+
+    <div class="main-form-center">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab3" role="tablist">
+            <a class="nav-item nav-link active" id="nav-datos-tabV" data-toggle="tab" href="#nav-datosV" role="tab" aria-controls="nav-datosV" aria-selected="true">Datos Generales</a>
+            <a class="nav-item nav-link" id="nav-informacion-tabV" data-toggle="tab" href="#nav-informacionV" role="tab" aria-controls="nav-informacionV" aria-selected="false">Informacion General</a>
+            </div>
+        </nav>
+
+          <div class="tab-content" id="nav-tabContent3">
+            <div class="tab-pane fade show active" id="nav-datosV" role="tabpanel" aria-labelledby="nav-datos-tabV">
+              <% include partials/DatSol%>
+            </div>
+            <div class="tab-pane fade" id="nav-informacionV" role="tabpanel" aria-labelledby="nav-informacion-tabV">
+              <% include partials/InfoSol%>
+            </div>
+          </div>
+
+        <form id="Validacion" action="" method="" class="needs-validation" novalidate>
+            <% include partials/Validadores.ejs%>
+            <div class="form-group">
+                <input id="EnviarV" type="submit" value="Validar" class="btn btn-primary">
+            </div>
+          </form>
+          
+    </div>
+
+    <% include partials/Scripts%>
+    <script src="js/validated.js"></script>
+</body>
+</html>

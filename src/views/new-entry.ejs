@@ -9,68 +9,10 @@
 <body>
   <!--<% include partials/navigation %>-->
   <% include partials/Cabecera %>
-  <!--<div class="container p-4">
-    <form method="POST" target="/new-entry" class="card card-body">
-
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input name="nombre" type="text" class="form-control" placeholder="Ingresa tu nombre" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Lugar de nacimiento</label>
-        <input name="lugar_nacimiento" type="text" class="form-control" placeholder="Estado" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Fecha de nacimiento</label>
-        <input name="fecha_nacimiento" type="text" class="form-control" placeholder="dd/mm/aaaa" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Dirección</label>
-        <input name="direccion" type="text" class="form-control" placeholder="Ingrese su dirección" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Número de celular</label>
-        <input name="celular" type="text" class="form-control" placeholder="ej. 55-5555-5555" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Nacionalidad</label>
-        <input name="nacionalidad" type="text" class="form-control" placeholder="Ingrese su nacionalidad" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Estado civil</label>
-        <input name="estado_civil" type="text" class="form-control" placeholder="seleccione uno" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">CURP</label>
-        <input name="CURP" type="text" class="form-control" placeholder="Ej. MASBDJSHNRC01" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Cuenta de correo electrónico</label>
-        <input name="correo" type="text" class="form-control" placeholder="Ingrese una cuenta de contacto" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <label for="title">Cuenta de skype</label>
-        <input name="skype" type="text" class="form-control" placeholder="Ingrese su cuenta de SKYPE" autofocus required>
-      </div>
-
-      <div class="form-group">
-        <input type="submit" value="Post Entry" class="btn btn-primary">
-      </div>
-    </form>
-
-  </div>-->
+  <% include partials/NavSol %>
   <div class="main-form-center">
     <% include partials/Seleccion %>
-    <!--Formulario de maestria-->
+
     <form id="Maestria" method="POST" target="/new-entry" action="/new-entry" class="needs-validation" style="display:none;" novalidate>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -87,7 +29,10 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="submit" value="Enviar" class="btn btn-primary">
+        <input id="EnviarM" type="submit" value="Enviar" class="btn btn-primary">
+      </div>
+      <div class="form-group">
+        <input id="GuardarM" type="submit" value="Guardar" class="btn btn-primary">
       </div>
     </form>
     <!--Terminar formulario de maestria-->
@@ -95,12 +40,12 @@
     <!--Formulario de doctorado-->
     <form id="Doctorado" method="POST" target="/new-entry" action="/new-entry2" class="needs-validation" style="display:none;" novalidate>
       <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <div class="nav nav-tabs" id="nav-tab2" role="tablist">
         <a class="nav-item nav-link active" id="nav-datos-tabD" data-toggle="tab" href="#nav-datosD" role="tab" aria-controls="nav-datosD" aria-selected="true">Datos Generales</a>
         <a class="nav-item nav-link" id="nav-informacion-tabD" data-toggle="tab" href="#nav-informacionD" role="tab" aria-controls="nav-informacionD" aria-selected="false">Informacion General</a>
         </div>
       </nav>
-      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-content" id="nav-tabContent2">
         <div class="tab-pane fade show active" id="nav-datosD" role="tabpanel" aria-labelledby="nav-datos-tabD">
           <% include partials/DatosGD%>
         </div>
@@ -109,7 +54,10 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="submit" value="Enviar" class="btn btn-primary">
+        <input id="EnviarD" type="submit" value="Enviar" class="btn btn-primary">
+      </div>
+      <div class="form-group">
+        <input id="GuardarD" type="submit" value="Guardar" class="btn btn-primary">
       </div>
     </form>
     <!--Terminar formulario de doctorado-->

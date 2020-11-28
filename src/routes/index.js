@@ -26,7 +26,6 @@ glob("src/views/Doctorado/*.json",function(err,files){
       if(err) {
         console.log("cannot read the file, something goes wrong with the file", err);
       }
-      
       var obj = JSON.parse(data);
       datosD.push(obj);
     });
@@ -45,7 +44,19 @@ router.get('/', (req, res) => {
 router.get('/new-entry', (req, res) => {
   res.render('new-entry');
 });
+//creadas por jesus
+router.get('/Coordinador', (req, res) => {
+  res.render('Coordinador');
+});
 
+router.get('/Validacion', (req, res) => {
+  res.render('Validacion');
+});
+
+router.get('/RevisarSol', (req, res) => {
+  res.render('RevisarSol');
+});
+//creadas por jesus
 router.post('/new-entry', (req, res) => {
 
   const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype } = req.body;
@@ -91,7 +102,7 @@ router.get('/delete/:id', (req, res) => {
 
 router.post('/new-entry2', (req, res) => {
 
-  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD, } = req.body;
+  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD, ValidacionD, ComentarioD,TipoD} = req.body;
 
   if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!motivoD||!lineaD) {    
     res.status(400).send("Error en el formulario");
@@ -117,7 +128,10 @@ router.post('/new-entry2', (req, res) => {
     experienciaD,
     Anio3,
     Anio4,
-    motivoD
+    motivoD,
+    ValidacionD:"Sin Validar",
+    ComentarioD:"Ninguno",
+    Tipo:"Doctorado"
   };
 
   // add a new doctor to the array
@@ -145,6 +159,8 @@ router.get('/delete2/:CURPD', (req, res) => {
   });
   res.redirect('/');
 });
+
+
 
 module.exports = router;
 
