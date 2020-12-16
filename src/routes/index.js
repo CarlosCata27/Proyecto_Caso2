@@ -4,8 +4,17 @@ const fs = require('fs');
 const uuidv4 = require('uuid/v4');
 const glob = require('glob');
 const Glob = glob.Glob;
-
-
+var multer  = require('multer');
+var storage = multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null, 'src/views/Doctorado/cvsDoctorado/')
+  },
+  filename: (req,file,cb) => {
+    cb(null, file.originalname)
+  }
+});
+var cvsDoctorado = multer({storage});
+//cata
 var _inArray = function(needle, haystack) {
   for(var k in haystack) {
     if(haystack[k] === needle) {
@@ -38,7 +47,7 @@ let datos = JSON.parse(json_datos);
 router.get('/', (req, res) => {
   res.render('index', { datos,datosD });
 });
-
+//cata
 
 
 router.get('/new-entry', (req, res) => {
@@ -100,9 +109,10 @@ router.get('/delete/:id', (req, res) => {
   res.redirect('/')
 });
 
-router.post('/new-entry2', (req, res) => {
+//cata
+router.post('/new-entry2', cvsDoctorado.single('cvD'), (req, res) => {
 
-  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD, ValidacionD, ComentarioD,TipoD} = req.body;
+  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD,cvD, ValidacionD, ComentarioD,TipoD} = req.body;
 
   if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!motivoD||!lineaD) {    
     res.status(400).send("Error en el formulario");
@@ -159,6 +169,7 @@ router.get('/delete2/:CURPD', (req, res) => {
   });
   res.redirect('/');
 });
+
 
 
 
