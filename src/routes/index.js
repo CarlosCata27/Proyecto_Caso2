@@ -4,6 +4,8 @@ const fs = require('fs');
 const uuidv4 = require('uuid/v4');
 const glob = require('glob');
 const Glob = glob.Glob;
+const glub = require('glob');
+const Glub = glub.Glob;
 var multer  = require('multer');
 var storage = multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -13,7 +15,13 @@ var storage = multer.diskStorage({
     cb(null, file.originalname)
   }
 });
+var storage2 = multer.diskStorage({
+  destination:(req,file,cb) => {
+    cb(null, file.originalname)
+  }
+});
 var cvsDoctorado = multer({storage});
+var cvsMaestria = multer({storage});
 //cata
 var _inArray = function(needle, haystack) {
   for(var k in haystack) {
@@ -48,6 +56,28 @@ router.get('/', (req, res) => {
   res.render('index', { datos,datosD });
 });
 //cata
+var datosM=[];
+
+glub("src/views/Maestria/*.json",function(err,files){
+  if(err) {
+    console.log("cannot read the folder, something goes wrong with glob", err);
+  }
+  files.forEach(function(file) {
+    fs.readFile(file, 'utf-8', function (err, data) { // Read each file
+      if(err) {
+        console.log("cannot read the file, something goes wrong with the file", err);
+      }
+      var obj = JSON.parse(data);
+      datosM.push(obj);
+    });
+  });
+});
+router.get('/', (req, res) => {
+  res.render('index', { datos,datosM });
+});
+router.get('/', (req, res) => {
+  res.render('index', { datos,datosD });
+});
 
 
 router.get('/new-entry', (req, res) => {
@@ -66,16 +96,16 @@ router.get('/RevisarSol', (req, res) => {
   res.render('RevisarSol');
 });
 //creadas por jesus
-router.post('/new-entry', (req, res) => {
+router.post('/new-entry', cvsMaestria.single('cvD'), (req, res) => {
 
-  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype } = req.body;
+  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, linea,cv, Validacion, Comentario,Tipo} = req.body;
 
-  if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype) {
+  if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
     res.status(400).send("Error en el formulario");
     return;
   }
 
-  var newAlumno = {
+  var newMaestro = {
     id: uuidv4(),
     nombre,
     lugar_nacimiento,
@@ -86,27 +116,45 @@ router.post('/new-entry', (req, res) => {
     estado_civil,
     CURP,
     correo,
-    skype
+    skype,
+    institucion,
+    titulado,
+    carrera,
+    paisinst,
+    experienciaP,
+    experienciaD,
+    Anio2,
+    Anio1,
+    motivo,
+    Validacion:"Sin Validar",
+    Comentario:"Ninguno",
+    Tipo:"Mestria"
   };
 
-  // add a new alumno to the array
-  datos.push(newAlumno);
+  // add a new doctor to the array
 
   // saving the array in a file
-  const json_datos = JSON.stringify(datos);
-  fs.writeFileSync('src/datos.json', json_datos, 'utf-8');
+  const json_datos = JSON.stringify(newMaestro);
+  fs.writeFile('src/views/Mestria/'+CURP+'.json', json_datos, 'utf-8',function (err) {
+    if (err) throw err;
+    console.log('File is created successfully.');
+  });
 
   res.redirect('/');
 });
 
-router.get('/delete/:id', (req, res) => {
-  datos = datos.filter(alumno => alumno.id != req.params.id);
-
+router.get('/delete/:CURP', (req, res) => {
+  datosM = datosM.filter(alumno => alumno.CURP != req.params.CURP);
   // saving data
-  const json_datos = JSON.stringify(datos);
-  fs.writeFileSync('src/datos.json', json_datos, 'utf-8');
-
-  res.redirect('/')
+  fs.unlink('src/views/Maestria/'+req.params.CURP+'.json',(err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+  
+    //file removed
+  });
+  res.redirect('/');
 });
 
 //cata
