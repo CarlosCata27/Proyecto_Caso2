@@ -202,4 +202,3 @@ router.get('/delete2/:CURPD', (req, res) => {
 
 
 module.exports = router;
-
