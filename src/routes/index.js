@@ -3,36 +3,11 @@ const router = express.Router();
 const fs = require('fs');
 const uuidv4 = require('uuid/v4');
 const glob = require('glob');
-const Glob = glob.Glob;
-const glub = require('glob');
-const Glub = glub.Glob;
-var multer  = require('multer');
-var storage = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null, 'src/views/Doctorado/cvsDoctorado/')
-  },
-  filename: (req,file,cb) => {
-    cb(null, file.originalname)
-  }
-});
-var storage2 = multer.diskStorage({
-  destination:(req,file,cb) => {
-    cb(null, file.originalname)
-  }
-});
-var cvsDoctorado = multer({storage});
-var cvsMaestria = multer({storage});
+let multer  = require('multer');
 //cata
-var _inArray = function(needle, haystack) {
-  for(var k in haystack) {
-    if(haystack[k] === needle) {
-      return true;
-    }
-  }
-  return false;
-}
 
 var datosD=[];
+var datosM=[];
 
 glob("src/views/Doctorado/*.json",function(err,files){
   if(err) {
@@ -48,17 +23,9 @@ glob("src/views/Doctorado/*.json",function(err,files){
     });
   });
 });
-
-const json_datos = fs.readFileSync('src/datos.json', 'utf-8');
-let datos = JSON.parse(json_datos);
-
-router.get('/', (req, res) => {
-  res.render('index', { datos,datosD });
-});
 //cata
-var datosM=[];
 
-glub("src/views/Maestria/*.json",function(err,files){
+glob("src/views/Maestria/*.json",function(err,files){
   if(err) {
     console.log("cannot read the folder, something goes wrong with glob", err);
   }
@@ -72,13 +39,10 @@ glub("src/views/Maestria/*.json",function(err,files){
     });
   });
 });
-router.get('/', (req, res) => {
-  res.render('index', { datos,datosM });
-});
-router.get('/', (req, res) => {
-  res.render('index', { datos,datosD });
-});
 
+router.get('/', (req, res) => {
+  res.render('index', { datosD,datosM });
+});
 
 router.get('/new-entry', (req, res) => {
   res.render('new-entry');
@@ -96,9 +60,18 @@ router.get('/RevisarSol', (req, res) => {
   res.render('RevisarSol');
 });
 //creadas por jesus
-router.post('/new-entry', cvsMaestria.single('cvD'), (req, res) => {
+router.post('/new-entry', multer({
+  storage: multer.diskStorage({
+    destination:(req,file,cb) => {
+      cb(null,'src/views/Maestria/cvsMaestria/')
+    },
+    filename: (req,file,cb) => {
+      cb(null, req.body.CURP+".pdf")
+    }
+  })
+}).single('cvM') ,(req, res) => {
 
-  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, linea,cv, Validacion, Comentario,Tipo} = req.body;
+  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, linea,cvM, Validacion, Comentario,Tipo} = req.body;
 
   if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
     res.status(400).send("Error en el formulario");
@@ -128,14 +101,12 @@ router.post('/new-entry', cvsMaestria.single('cvD'), (req, res) => {
     motivo,
     Validacion:"Sin Validar",
     Comentario:"Ninguno",
-    Tipo:"Mestria"
+    Tipo:"Maestria"
   };
-
-  // add a new doctor to the array
 
   // saving the array in a file
   const json_datos = JSON.stringify(newMaestro);
-  fs.writeFile('src/views/Mestria/'+CURP+'.json', json_datos, 'utf-8',function (err) {
+  fs.writeFile('src/views/Maestria/'+CURP+'.json', json_datos, 'utf-8',function (err) {
     if (err) throw err;
     console.log('File is created successfully.');
   });
@@ -158,7 +129,16 @@ router.get('/delete/:CURP', (req, res) => {
 });
 
 //cata
-router.post('/new-entry2', cvsDoctorado.single('cvD'), (req, res) => {
+router.post('/new-entry2', multer({
+  storage: multer.diskStorage({
+    destination:(req,file,cb) => {
+      cb(null,'src/views/Doctorado/cvsDoctorado')
+    },
+    filename: (req,file,cb) => {
+      cb(null, req.body.CURPD+".pdf")
+    }
+  })
+}).single('cvD'), (req, res) => {
 
   const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD,cvD, ValidacionD, ComentarioD,TipoD} = req.body;
 
