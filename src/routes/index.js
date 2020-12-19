@@ -197,8 +197,4 @@ router.get('/delete2/:CURPD', (req, res) => {
   });
   res.redirect('/');
 });
-
-
-
-
 module.exports = router;
