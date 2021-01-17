@@ -149,12 +149,16 @@ router.post('/new-entry2', multer({
   })
 }).single('cvD'), (req, res) => {
 
-  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD,experienciadD,Anio4 ,Anio3, motivoD, lineaD,cvD,fechahoyD,firmaD, ValidacionD, ComentarioD,TipoD} = req.body;
+  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD,experienciadD,Anio4 ,Anio3, motivoD, lineaD,cvD,firmaD, ValidacionD, ComentarioD,TipoD} = req.body;
 
   if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!experienciadD||!motivoD||!lineaD) {    
     res.status(400).send("Error en el formulario");
     return;
   }
+
+  var date = new Date();
+  
+  var fechahoyD = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
 
   var newDoctor = {
     id: uuidv4(),
