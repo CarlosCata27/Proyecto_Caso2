@@ -1,0 +1,85 @@
+            
+        <div class="Grueso">
+            <h4>II. Informacion general</h4>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                <label>Institución donde realizo sus estudios el solicitante:</label>
+                <input type="text" readonly class="form-control-plaintext" name="Prof_o_MaesV" disabled value="<%= alumno.institucion%>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <!--Se cambia el texto dependiendo el formulario-->
+                    <label>Carrera:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="Titu_o_GradV" disabled value="<%= alumno.carrera%>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Titulado:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="Pos_o_MaesV" disabled value="<%= alumno.titulado%>">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Pais de la institucion:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="EST_PoMV" disabled value="<%= alumno.paisinst%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Experiencia Profesional:</label>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPPV" rows="3" disabled ><%= alumno.experienciaP%></textarea>
+            </div>
+            <div class="form-group">
+                <label>Experiencia en Docencia:</label>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPDV" rows="3" disabled ><%= alumno.experienciaD%></textarea>
+            </div>
+            <!--Si tomo algun curso prosedeutico que se muestren los años-->
+
+            <%if(alumno.Anio1||alumno.Anio2){%>
+                <div class="form-group">
+                    <label>Años que asistió a los cursos propedéuticos:</label>
+                </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <input type="text" readonly class="form-control-plaintext" name="ANIO1V" disabled value="<%= alumno.Anio1%>">
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" readonly class="form-control-plaintext" name="ANIO2V" disabled value="<%= alumno.Anio2%>">
+                </div>
+            </div>
+            <%}else{%>
+                <div class="form-group">
+                    <label>Este aspirante no ha asistido a los cursos propedéuticos</label>
+                </div>  
+                <%}%>
+            <!--Si tomo algun curso prosedeutico que se muestren los años-->
+            <div class="form-group">
+                <label>Motivo del ingreso:</label>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="MOTV" rows="3" disabled ><%= alumno.motivo%></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label>La linea de investigacion deseada por el solicitante:</label>
+                <%if(alumno.linea=="DeM"){%>
+                    <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Docencia en matemáticas">
+                    <%}else if(alumno.linea=="DdlF"){%>
+                    <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Didáctica de la Física">    
+                    <%}else if(alumno.linea=="TICEF"){%>
+                    <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Tecnologías de la Información y la Comunicación en la Enseñanza de la Física">    
+                    <%}else if(alumno.linea=="FD"){%>
+                        <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Formación Docente">
+                    <%}%>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label>Fecha de Envio:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="FECHAEV" disabled value="<%= alumno.fechahoy%>">
+                </div>
+                <%if(alumno.firmaD){%>
+                <div class="form-group col-md-9">
+                    <label>Firma Electronica del aspirante:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="FIRMAV" disabled value="alumno.firma">
+                </div>
+                <%}else{%>
+                    <div class="form-group">
+                        <label>Este aspirante no cuenta con firma electronica</label>
+                    </div>  
+                    <%}%>
+            </div>  
+        </div>

@@ -8,6 +8,8 @@ let multer  = require('multer');
 
 var datosD=[];
 var datosM=[];
+var InformacionD=[];
+var InformacionM=[];
 
 glob("src/views/Doctorado/*.json",function(err,files){
   if(err) {
@@ -32,7 +34,7 @@ glob("src/views/Maestria/*.json",function(err,files){
   files.forEach(function(file) {
     fs.readFile(file, 'utf-8', function (err, data) { // Read each file
       if(err) {
-        console.log("cannot read the file, something goes wrong with the file", err);
+        console.log("cannot read the f©ile, something goes wrong with the file", err);
       }
       var obj = JSON.parse(data);
       datosM.push(obj);
@@ -41,7 +43,7 @@ glob("src/views/Maestria/*.json",function(err,files){
 });
 
 router.get('/', (req, res) => {
-  res.render('index', { datosD,datosM });
+  res.render('index', {datosD,datosM });
 });
 
 router.get('/new-entry', (req, res) => {
@@ -49,11 +51,15 @@ router.get('/new-entry', (req, res) => {
 });
 //creadas por jesus
 router.get('/Coordinador', (req, res) => {
-  res.render('Coordinador');
+  res.render('Coordinador',{ datosD,datosM });
 });
 
 router.get('/Validacion', (req, res) => {
-  res.render('Validacion');
+  res.render('Validacion',{InformacionD});
+});
+
+router.get('/ValidacionM', (req, res) => {
+  res.render('ValidacionM',{InformacionM});
 });
 
 router.get('/RevisarSol', (req, res) => {
@@ -71,7 +77,7 @@ router.post('/new-entry', multer({
   })
 }).single('cvM') ,(req, res) => {
 
-  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, linea,cvM, Validacion, Comentario,Tipo} = req.body;
+  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo,fechahoy, firma,linea,cvM, Validacion, Comentario,Tipo} = req.body;
 
   if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
     res.status(400).send("Error en el formulario");
@@ -99,6 +105,9 @@ router.post('/new-entry', multer({
     Anio2,
     Anio1,
     motivo,
+    fechahoy,
+    linea,
+    firma,
     Validacion:"Sin Validar",
     Comentario:"Ninguno",
     Tipo:"Maestria"
@@ -140,9 +149,9 @@ router.post('/new-entry2', multer({
   })
 }).single('cvD'), (req, res) => {
 
-  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD ,Anio4 ,Anio3, motivoD, lineaD,cvD, ValidacionD, ComentarioD,TipoD} = req.body;
+  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD,experienciadD,Anio4 ,Anio3, motivoD, lineaD,cvD,fechahoyD,firmaD, ValidacionD, ComentarioD,TipoD} = req.body;
 
-  if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!motivoD||!lineaD) {    
+  if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!experienciadD||!motivoD||!lineaD) {    
     res.status(400).send("Error en el formulario");
     return;
   }
@@ -164,9 +173,13 @@ router.post('/new-entry2', multer({
     posgradoD,
     paisinstD,
     experienciaD,
+    experienciadD,
     Anio3,
     Anio4,
     motivoD,
+    fechahoyD,
+    lineaD,
+    firmaD,
     ValidacionD:"Sin Validar",
     ComentarioD:"Ninguno",
     Tipo:"Doctorado"
@@ -196,5 +209,17 @@ router.get('/delete2/:CURPD', (req, res) => {
     //file removed
   });
   res.redirect('/');
+});
+
+router.get('/ValidarD/:CURPD', (req, res) => {
+  InformacionD = datosD.filter(alumno => alumno.CURPD == req.params.CURPD);
+  // saving data
+  res.redirect('/Validacion');
+});
+
+router.get('/ValidarM/:CURP', (req, res) => {
+  InformacionM = datosM.filter(alumno => alumno.CURP == req.params.CURP);
+  // saving data
+  res.redirect('/ValidacionM');
 });
 module.exports = router;

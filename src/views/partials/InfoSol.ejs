@@ -4,50 +4,84 @@
             <div class="form-row">
                 <div class="form-group col-md-8">
                 <label>Institución donde realizo sus estudios el solicitante:</label>
-                <input type="text" readonly class="form-control-plaintext" name="Prof_o_MaesV" disabled value="UPIITA">
+                <input type="text" readonly class="form-control-plaintext" name="Prof_o_MaesV" disabled value="<%= alumno.institucionD%>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <!--Se cambia el texto dependiendo el formulario-->
-                    <label>Titulado o Graduado:</label>
-                    <input type="text" readonly class="form-control-plaintext" name="Titu_o_GradV" disabled value="UPIITA">
+                    <label>Graduado:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="Titu_o_GradV" disabled value="<%= alumno.graduadoD%>">
                 </div>
                 <div class="form-group col-md-4">
-                    <label>Posgrado o Maestria:</label>
-                    <input type="text" readonly class="form-control-plaintext" name="Pos_o_MaesV" disabled value="UPIITA">
+                    <label>Posgrado:</label>
+                    <input type="text" readonly class="form-control-plaintext" name="Pos_o_MaesV" disabled value="<%= alumno.posgradoD%>">
                 </div>
                 <div class="form-group col-md-4">
                     <label>Pais de la institucion:</label>
-                    <input type="text" readonly class="form-control-plaintext" name="EST_PoMV" disabled value="UPIITA">
+                    <input type="text" readonly class="form-control-plaintext" name="EST_PoMV" disabled value="<%= alumno.paisinstD%>">
                 </div>
             </div>
             <div class="form-group">
                 <label>Experiencia Profesional:</label>
-                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPPV" rows="3" disabled value="UPIITA"></textarea>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPPV" rows="3" disabled ><%= alumno.experienciaD%></textarea>
             </div>
             <div class="form-group">
                 <label>Experiencia en Docencia:</label>
-                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPDV" rows="3" disabled value="UPIITA"></textarea>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="EXPDV" rows="3" disabled ><%= alumno.experienciadD%></textarea>
             </div>
             <!--Si tomo algun curso prosedeutico que se muestren los años-->
+
+            <%if(alumno.Anio4||alumno.Anio3){%>
+                <div class="form-group">
+                    <label>Años que asistió a los cursos propedéuticos:</label>
+                </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <input type="text" readonly class="form-control-plaintext" name="ANIO1V" disabled value="1969">
+                    <input type="text" readonly class="form-control-plaintext" name="ANIO1V" disabled value="<%= alumno.Anio3%>">
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="text" readonly class="form-control-plaintext" name="ANIO2V" disabled value="2000">
+                    <input type="text" readonly class="form-control-plaintext" name="ANIO2V" disabled value="<%= alumno.Anio4%>">
                 </div>
             </div>
+            <%}else{%>
+                <div class="form-group">
+                    <label>Este aspirante no ha asistido a los cursos propedéuticos</label>
+                </div>  
+                <%}%>
             <!--Si tomo algun curso prosedeutico que se muestren los años-->
+            <div class="form-group">
+                <label>Motivo del ingreso:</label>
+                <textarea id="Atxt" readonly class="form-control-plaintext" name="MOTV" rows="3" disabled ><%= alumno.motivoD%></textarea>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>La linea de investigacion deseada por el solicitante:</label>
+                <%if(alumno.lineaD=="DeM"){%>
+                <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Docencia en matemáticas">
+                <%}else if(alumno.lineaD=="DdlF"){%>
+                <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Didáctica de la Física">    
+                <%}else if(alumno.lineaD=="TICEF"){%>
+                <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Tecnologías de la Información y la Comunicación en la Enseñanza de la Física">    
+                <%}else if(alumno.lineaD=="FD"){%>
+                    <input type="text" readonly class="form-control-plaintext" name="LINEAD" disabled value="Formación Docente">
+                <%}%>
+            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label>Fecha de Envio:</label>
-                    <input type="text" readonly class="form-control-plaintext" name="FECHAEV" disabled value="UPIITA">
+                    <input type="text" readonly class="form-control-plaintext" name="FECHAEV" disabled value="<%=alumno.fechahoyD%>">
                 </div>
+                <%if(alumno.firmaD){%>
                 <div class="form-group col-md-9">
                     <label>Firma Electronica del aspirante:</label>
-                    <input type="text" readonly class="form-control-plaintext" name="FIRMAV" disabled value="UPIITA">
+                    <input type="text" readonly class="form-control-plaintext" name="FIRMAV" disabled value="<%= alumno.firmaD%>">
                 </div>
+                <%}else{%>
+                    <div class="form-group">
+                        <label>Este aspirante no cuenta con firma electronica</label>
+                    </div>  
+                    <%}%>
             </div>  
         </div>

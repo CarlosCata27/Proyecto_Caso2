@@ -12,6 +12,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">CURP</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Estado de Validacion</th>
@@ -20,14 +21,35 @@
             </thead>
             <tbody>
                 <!-- Contenido de la tabla (se hara con js)-->
+                <%let cont=1;%>
+                <% datosM.forEach(function(alumno) { %>
                 <tr>
                     <!-- Ejemplo de contenido -->
-                    <th scope="row">1</th>
-                    <td>Mark Buzany Ramirez</td>
-                    <td>Doctorado</td>
-                    <td>Sin validar</td>
-                    <td><button>Validar</button></td>
+                    <th scope="row"><%=cont%></th>
+                    <%cont++;%>
+                    <td><%= alumno.CURP %></td>
+                    <td><%= alumno.nombre %></td>
+                    <td><%= alumno.Tipo %></td>
+                    <td><%= alumno.Validacion %></td>
+                    <td><a href="/ValidarM/<%=alumno.CURP%>" class="btn btn-success btn-block">
+                      Validar
+                    </a></td>
                   </tr>
+                  <%})%>
+                    <% datosD.forEach(function(alumno) { %>
+                    <tr>
+                        <!-- Ejemplo de contenido -->
+                        <th scope="row"><%= cont%></th>
+                        <%cont++;%>
+                        <td><%= alumno.CURPD %></td>
+                        <td><%= alumno.nombreD %></td>
+                        <td><%= alumno.Tipo %></td>
+                        <td><%= alumno.ValidacionD %></td>
+                        <td><a href="/ValidarD/<%=alumno.CURPD %>" class="btn btn-success btn-block">
+                          Validar
+                        </a></td>
+                      </tr>
+                      <%})%>
             </tbody>
           </table>
     </div>
