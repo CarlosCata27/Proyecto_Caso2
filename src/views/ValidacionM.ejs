@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/header%>
+</head>
+<body>
+    <% include partials/Cabecera %>
+
+
+    <div class="main-form-center">
+        <nav>
+           
+        </nav>
+        <% InformacionM.forEach(function(alumno) { %>
+          
+          
+          <div class="tab-content" id="nav-tabContent3">
+            <div class="tab-pane fade show active" id="nav-datosV" role="tabpanel" aria-labelledby="nav-datos-tabV">
+              <% include partials/DatSolM%>
+              <% include partials/InfoSolM%>
+            </div>
+          </div>
+          <%})%>
+        <form id="Validacion" action="" method="" class="needs-validation" novalidate>
+            <% include partials/Validadores.ejs%>
+            <div class="form-group">
+                <input id="EnviarV" type="submit" value="Validar" class="btn btn-primary">
+            </div>
+          </form>
+          
+    </div>
+
+    <% include partials/Scripts%>
+    <script src="js/validated.js"></script>
+</body>
+</html>
