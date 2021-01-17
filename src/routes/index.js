@@ -77,12 +77,18 @@ router.post('/new-entry', multer({
   })
 }).single('cvM') ,(req, res) => {
 
-  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo,fechahoy, firma,linea,cvM, Validacion, Comentario,Tipo} = req.body;
+  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, firma,linea,cvM, Validacion, Comentario,Tipo} = req.body;
 
   if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
     res.status(400).send("Error en el formulario");
     return;
   }
+
+  
+  var date = new Date();
+  
+  var fechahoy = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
+
 
   var newMaestro = {
     id: uuidv4(),
