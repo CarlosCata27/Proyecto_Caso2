@@ -8,26 +8,22 @@
 
 
     <div class="main-form-center">
-        <nav>
-           
-        </nav>
+      <form id="Validacion" action="/Validacion" method="POST" class="needs-validation" novalidate>
         <% InformacionD.forEach(function(alumno) { %>
-          
-          
           <div class="tab-content" id="nav-tabContent3">
             <div class="tab-pane fade show active" id="nav-datosV" role="tabpanel" aria-labelledby="nav-datos-tabV">
               <% include partials/DatSol%>
               <% include partials/InfoSol%>
             </div>
           </div>
-          <%})%>
-        <form id="Validacion" action="" method="" class="needs-validation" novalidate>
+        <%})%>
+
+          
             <% include partials/Validadores.ejs%>
             <div class="form-group">
                 <input id="EnviarV" type="submit" value="Validar" class="btn btn-primary">
             </div>
           </form>
-          
     </div>
 
     <% include partials/Scripts%>

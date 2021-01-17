@@ -218,4 +218,39 @@ router.get('/ValidarM/:CURP', (req, res) => {
   // saving data
   res.redirect('/ValidacionM');
 });
+
+router.post('/Validacion', (req, res) => {
+
+  const {CURPD,ValidacionD,ComentarioD} = req.body;
+
+  let file = JSON.parse(fs.readFileSync('src/views/Doctorado/'+CURPD+'.json', 'utf8'));
+  
+  file.ValidacionD = ValidacionD;
+  file.ComentarioD = ComentarioD;
+
+  fs.writeFile('src/views/Doctorado/'+CURPD+'.json', JSON.stringify(file), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log(JSON.stringify(file));
+  });
+
+  res.redirect('/');
+});
+
+router.post('/ValidacionM', (req, res) => {
+
+  const {CURPV,ValidacionD,ComentarioD} = req.body;
+
+  let file = JSON.parse(fs.readFileSync('src/views/Maestria/'+CURPV+'.json', 'utf8'));
+  
+  file.ValidacionD = ValidacionD;
+  file.Comentario = ComentarioD;
+
+  fs.writeFile('src/views/Maestria/'+CURPV+'.json', JSON.stringify(file), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log(JSON.stringify(file));
+  });
+
+  res.redirect('/');
+});
+
 module.exports = router;

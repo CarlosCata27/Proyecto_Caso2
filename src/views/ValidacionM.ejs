@@ -13,7 +13,7 @@
         </nav>
         <% InformacionM.forEach(function(alumno) { %>
           
-          
+          <form id="Validacion" action="/ValidacionM" method="POST" class="needs-validation" novalidate>
           <div class="tab-content" id="nav-tabContent3">
             <div class="tab-pane fade show active" id="nav-datosV" role="tabpanel" aria-labelledby="nav-datos-tabV">
               <% include partials/DatSolM%>
@@ -21,7 +21,7 @@
             </div>
           </div>
           <%})%>
-        <form id="Validacion" action="" method="" class="needs-validation" novalidate>
+        
             <% include partials/Validadores.ejs%>
             <div class="form-group">
                 <input id="EnviarV" type="submit" value="Validar" class="btn btn-primary">
