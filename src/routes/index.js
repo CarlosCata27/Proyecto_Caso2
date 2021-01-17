@@ -207,20 +207,6 @@ router.post('/new-entry2', multer({
   res.redirect('/');
 });
 
-router.get('/delete2/:CURPD', (req, res) => {
-  datosD = datosD.filter(alumno => alumno.CURPD != req.params.CURPD);
-  // saving data
-  fs.unlink('src/views/Doctorado/'+req.params.CURPD+'.json',(err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-  
-    //file removed
-  });
-  res.redirect('/');
-});
-
 router.get('/ValidarD/:CURPD', (req, res) => {
   InformacionD = datosD.filter(alumno => alumno.CURPD == req.params.CURPD);
   // saving data
