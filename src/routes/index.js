@@ -34,7 +34,7 @@ glob("src/views/Maestria/*.json",function(err,files){
   files.forEach(function(file) {
     fs.readFile(file, 'utf-8', function (err, data) { // Read each file
       if(err) {
-        console.log("cannot read the f©ile, something goes wrong with the file", err);
+        console.log("cannot read the file, something goes wrong with the file", err);
       }
       var obj = JSON.parse(data);
       datosM.push(obj);
@@ -77,7 +77,7 @@ router.post('/new-entry', multer({
   })
 }).single('cvM') ,(req, res) => {
 
-  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, firma,linea,cvM, Validacion, Comentario,Tipo} = req.body;
+  const { nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, firma,linea,cvM, ValidacionD, Comentario,Tipo} = req.body;
 
   if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
     res.status(400).send("Error en el formulario");
@@ -114,9 +114,9 @@ router.post('/new-entry', multer({
     fechahoy,
     linea,
     firma,
-    Validacion:"Sin Validar",
+    ValidacionD:"Sin Validar",
     Comentario:"Ninguno",
-    Tipo:"Maestria"
+    Tipo:"Maestría"
   };
 
   // saving the array in a file
@@ -254,3 +254,68 @@ router.post('/ValidacionM', (req, res) => {
 });
 
 module.exports = router;
+
+//busqueda curp
+/*
+router.post('/new-entry2', multer({
+  storage: multer.diskStorage({
+    destination:(req,file,cb) => {
+      cb(null,'src/views/Doctorado/cvsDoctorado')
+    },
+    filename: (req,file,cb) => {
+      cb(null, req.body.CURPD+".pdf")
+    }
+  })
+}).single('cvD'), (req, res) => {
+
+  const { nombreD, lugar_nacimientoD, fecha_nacimientoD, direccionD, celularD, nacionalidadD, estado_civilD, CURPD, correoD, skypeD,institucionD,graduadoD,posgradoD , paisinstD,experienciaD,experienciadD,Anio4 ,Anio3, motivoD, lineaD,cvD,firmaD, ValidacionD, ComentarioD,TipoD} = req.body;
+
+  if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!experienciadD||!motivoD||!lineaD) {    
+    res.status(400).send("Error en el formulario");
+    return;
+  }
+
+  var date = new Date();
+  
+  var fechahoyD = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
+
+  var newDoctor = {
+    id: uuidv4(),
+    nombreD,
+    lugar_nacimientoD,
+    fecha_nacimientoD,
+    direccionD,
+    celularD,
+    nacionalidadD,
+    estado_civilD,
+    CURPD,
+    correoD,
+    skypeD,
+    institucionD,
+    graduadoD,
+    posgradoD,
+    paisinstD,
+    experienciaD,
+    experienciadD,
+    Anio3,
+    Anio4,
+    motivoD,
+    fechahoyD,
+    lineaD,
+    firmaD,
+    ValidacionD:"Sin Validar",
+    ComentarioD:"Ninguno",
+    Tipo:"Doctorado"
+  };
+
+  // add a new doctor to the array
+
+  // saving the array in a file
+  const json_datos = JSON.stringify(newDoctor);
+  fs.writeFile('src/views/Doctorado/'+CURPD+'.json', json_datos, 'utf-8',function (err) {
+    if (err) throw err;
+    console.log('File is created successfully.');
+  });
+
+  res.redirect('/');
+});*/
