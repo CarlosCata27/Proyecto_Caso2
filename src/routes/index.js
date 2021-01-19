@@ -5,6 +5,9 @@ const uuidv4 = require('uuid/v4');
 const glob = require('glob');
 let multer  = require('multer');
 
+var parcialD;
+var parcialM;
+
 //cata
 
 var datosD=[];
@@ -125,7 +128,7 @@ router.post('/new-entry', multer({
     if (err) throw err;
     console.log('File is created successfully.');
   });
-
+  res.redirect('/new-entry');
   }else{
     if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
       res.status(400).send("Faltan campos a llenar");
@@ -259,6 +262,30 @@ router.post('/ValidacionM', (req, res) => {
   });
 
   res.redirect('/');
+});
+
+
+
+router.post('/Busqueda', (req, res) => {
+
+  const {CURP} = req.body;
+  
+  if(fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')){
+    parcialM = fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
+    console.log(parcialM);
+    console.log("Hay Maestro");
+  }else if(fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')){
+    parcialD = fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')
+    console.log(parcialD);
+    console.log("Hay Doctor");
+  }else{
+    
+    console.log("No se encontraron datos");
+  }
+  
+  // saving data
+  console.log("Hola ezqkizo ");
+  res.redirect('/Busqueda');
 });
 
 module.exports = router;
