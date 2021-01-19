@@ -24,7 +24,7 @@
 
 
     <% include partials/Seleccion %>
-    <form id="Maestria" method="POST" target="/new-entry" action="/new-entry" class="needs-validation" style="display:none;" enctype="multipart/form-data" novalidate>
+    <form id="Maestria" method="POST" action="/new-entry" class="needs-validation" style="display:none;" enctype="multipart/form-data" novalidate>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active" id="nav-datos-tab" data-toggle="tab" href="#nav-datos" role="tab" aria-controls="nav-datos" aria-selected="true">Datos Generales</a>
@@ -40,8 +40,8 @@
         </div>
       </div>
       <div class="form-group">
-        <input type="submit" value="Enviar" class="btn btn-primary">
-        <input onsubmit="return storeValuesM();" name="GuardarM" id="GuardarM" value="Guardar" class="btn btn-primary">
+        <input type="submit" name="GuardarM" value="Enviar" class="btn btn-primary">
+        <input type="submit" name="GuardarM" onclick="alertSave()" id="GuardarM" value="Guardar" class="btn btn-primary">
       </div>
     </form>
     <!--Terminar formulario de maestria-->
@@ -64,7 +64,8 @@
       </div>
       <div class="form-group">
         <button name="accion" type="submit" id="EnviarD" value="Enviar" class="btn btn-primary">Enviar</button>
-        <button name="accion" type="submit" id="GuardarD" value="Guardar" class="btn btn-primary">Guardar</button>
+        <button name="accion" type="submit" onclick="alertSave()" id="GuardarD" value="Guardar" class="btn btn-primary">Guardar</button>
+        
 
       </div>
     </form>
@@ -75,85 +76,10 @@
 </body>
 </html>
 
-<script language="text/javascript">
+<script >
 
-var today = new Date();
-  var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
-
-function setCookie(name, value)
-{
-  document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+function alertSave() {
+  alert("Tus datos se guardaron correctamente");
 }
-
-function getCookie(name)
-{
-  var re = new RegExp(name + "=([^;]+)");
-  var value = re.exec(document.cookie);
-  return (value != null) ? unescape(value[1]) : null;
-}
-
-function cookieproof(){
-  document.cookie = "puta = sierra";
-  return true;
-}
-
-function storeValuesM()  
-  {
-    setCookie("nombre", document.getElementById(Maestria).nombre.value);
-    setCookie("lugar_nacimiento", document.getElementById(Maestria).lugar_nacimiento.value);
-    setCookie("fecha_nacimiento", document.getElementById(Maestria).fecha_nacimiento.value);
-    setCookie("direccion", document.getElementById(Maestria).direccion.value);
-    setCookie("celular", document.getElementById(Maestria).celular.value);
-    setCookie("nacionalidad", document.getElementById(Maestria).nacionalidad.value);
-    setCookie("estado_civil", document.getElementById(Maestria).estado_civil.value);
-    setCookie("CURP", document.getElementById(Maestria).CURP.value);
-    setCookie("correo", document.getElementById(Maestria).correo.value);
-    setCookie("skype", document.getElementById(Maestria).skype.value);
-    setCookie("institucion", document.getElementById(Maestria).institucion.value);
-    setCookie("titulado", document.getElementById(Maestria).titulado.value);
-    setCookie("carrera", document.getElementById(Maestria).carrera.value);
-    setCookie("paisinst", document.getElementById(Maestria).paisinst.value);
-    setCookie("experienciaP", document.getElementById(Maestria).experienciaP.value);
-    setCookie("experienciaD", document.getElementById(Maestria).experienciaD.value);
-    setCookie("Anio2", document.getElementById(Maestria).Anio2.value);
-    setCookie("Anio1", document.getElementById(Maestria).Anio1.value);
-    setCookie("motivo", document.getElementById(Maestria).motivo.value);
-    setCookie("fechahoy", document.getElementById(Maestria).fechahoy.value);
-    setCookie("linea", document.getElementById(Maestria).linea.value);
-    setCookie("firma", document.getElementById(Maestria).firma.value);
-    return true;
-  }
-
-  function storeValuesD()  
-  {
-    setCookie("nombreD", document.getElementById("Doctorado").nombreD.value);
-    setCookie("lugar_nacimientoD", document.getElementById(Doctorado).lugar_nacimientoD.value);
-    setCookie("fecha_nacimientoD", document.getElementById(Doctorado).fecha_nacimientoD.value);
-    setCookie("direccionD", document.getElementById(Doctorado).direccionD.value);
-    setCookie("celularD", document.getElementById(Doctorado).celularD.value);
-    setCookie("nacionalidadD", document.getElementById(Doctorado).nacionalidadD.value);
-    setCookie("estado_civilD", document.getElementById(Doctorado).estado_civilD.value);
-    setCookie("CURPD", document.getElementById("Doctorado").CURPD.value);
-    setCookie("correoD", document.getElementById(Doctorado).correoD.value);
-    setCookie("skypeD", document.getElementById(Doctorado).skypeD.value);
-    setCookie("institucionD", document.getElementById(Doctorado).institucionD.value);
-    setCookie("graduadoD", document.getElementById(Doctorado).graduadoD.value);
-    setCookie("carreraD", document.getElementById(Doctorado).carreraD.value);
-    setCookie("paisinstD", document.getElementById(Doctorado).paisinstD.value);
-    setCookie("experienciaD", document.getElementById(Doctorado).experienciaD.value);
-    setCookie("experienciadD", document.getElementById(Doctorado).experienciadD.value);
-    setCookie("Anio4", document.getElementById(Doctorado).Anio4.value);
-    setCookie("Anio3", document.getElementById(Doctorado).Anio3.value);
-    setCookie("motivoD", document.getElementById(Doctorado).motivoD.value);
-    setCookie("fechahoyD", document.getElementById(Doctorado).fechahoyD.value);
-    setCookie("lineaD", document.getElementById(Doctorado).lineaD.value);
-    setCookie("firmaD", document.getElementById(Doctorado).firmaD.value);
-    return true;
-  }
-
-  // if(nombreD = getCookie("nombreD")) document.myForm.field1.value = field1;
-  // if(field2 = getCookie("field2")) document.myForm.field2.value = field2;
-  // if(field3 = getCookie("field3")) document.myForm.field3.value = field3;
-  // if(field4 = getCookie("field4")) document.myForm.field4.value = field4;
 
 </script>

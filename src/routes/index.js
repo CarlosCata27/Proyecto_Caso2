@@ -82,7 +82,7 @@ router.post('/new-entry', multer({
   })
 }).single('cvM') ,(req, res) => {
 
-  const {tryit, nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, firma,linea,cvM, ValidacionD, Comentario,Tipo} = req.body;
+  const {GuardarM, nombre, lugar_nacimiento, fecha_nacimiento, direccion, celular, nacionalidad, estado_civil, CURP, correo, skype,institucion,carrera,titulado , paisinst,experienciaP,experienciaD ,Anio2 ,Anio1, motivo, firma,linea,cvM, ValidacionD, Comentario,Tipo} = req.body;
   
   var date = new Date();
   
@@ -119,22 +119,25 @@ router.post('/new-entry', multer({
   };
 
   // Se guardan los datos en la carpeta
-  if(tryit=="Guardar"){
+  if(GuardarM=="Guardar"){
     const json_datos = JSON.stringify(newMaestro);
   fs.writeFile('src/views/MaestriaPartial/'+CURP+'.json', json_datos, 'utf-8',function (err) {
     if (err) throw err;
     console.log('File is created successfully.');
   });
 
-  res.redirect('/');
   }else{
-    const json_datos = JSON.stringify(newMaestro);
-  fs.writeFile('src/views/Maestria/'+CURP+'.json', json_datos, 'utf-8',function (err) {
-    if (err) throw err;
-    console.log('File is created successfully.');
-  });
-
-  res.redirect('/');
+    if (!nombre || !lugar_nacimiento || !fecha_nacimiento || !direccion || !celular || !nacionalidad || !estado_civil || !CURP || !correo || !skype||!institucion||!carrera||!paisinst||!experienciaD||!experienciaP||!motivo||!linea) {    
+      res.status(400).send("Faltan campos a llenar");
+      return;
+    }else{
+      const json_datos = JSON.stringify(newMaestro);
+      fs.writeFile('src/views/Maestria/'+CURP+'.json', json_datos, 'utf-8',function (err) {
+      if (err) throw err;
+      console.log('File is created successfully.');
+    });
+    }
+    res.redirect('/');
   }
 });
 
@@ -196,18 +199,20 @@ router.post('/new-entry2', multer({
     if (err) throw err;
     console.log('File is created successfully.');
   });
-
-  res.redirect('/');
+  res.redirect('/new-entry');
   }else{
-    const json_datos = JSON.stringify(newDoctor);
-  fs.writeFile('src/views/Doctorado/'+CURPD+'.json', json_datos, 'utf-8',function (err) {
-    if (err) throw err;
-    console.log('File is created successfully.');
-  });
-
-  res.redirect('/');
+    if (!nombreD || !lugar_nacimientoD || !fecha_nacimientoD || !direccionD || !celularD || !nacionalidadD || !estado_civilD || !CURPD || !correoD || !skypeD||!institucionD||!graduadoD||!posgradoD||!paisinstD||!experienciaD||!motivoD||!lineaD) {    
+      res.status(400).send("Faltan campos por llenar");
+      return;
+    }else{
+      const json_datos = JSON.stringify(newDoctor);
+      fs.writeFile('src/views/Doctorado/'+CURPD+'.json', json_datos, 'utf-8',function (err) {
+        if (err) throw err;
+        console.log('File is created successfully.');
+      });
+      res.redirect('/');
+    }
   }
-  
 });
 
 router.get('/ValidarD/:CURPD', (req, res) => {
