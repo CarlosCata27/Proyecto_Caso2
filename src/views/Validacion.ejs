@@ -5,8 +5,6 @@
 </head>
 <body>
     <% include partials/Cabecera %>
-
-
     <div class="main-form-center">
       <form id="Validacion" action="/Validacion" method="POST" class="needs-validation" novalidate>
         <% InformacionD.forEach(function(alumno) { %>
@@ -17,15 +15,12 @@
             </div>
           </div>
         <%})%>
-
-          
             <% include partials/Validadores.ejs%>
             <div class="form-group">
                 <input id="EnviarV" type="submit" value="Validar" class="btn btn-primary">
             </div>
           </form>
     </div>
-
     <% include partials/Scripts%>
     <script src="js/validated.js"></script>
 </body>
