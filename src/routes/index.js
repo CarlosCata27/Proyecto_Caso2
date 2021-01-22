@@ -283,7 +283,7 @@ router.post('/Busqueda', (req, res) => {
     res.redirect('/Busqueda');
   }else if(buscar=="BuscarD"){
     parcialD = fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')
-    JsBusD=JSON.parse(parciald);
+    JsBusD=JSON.parse(parcialD);
     console.log(JsBusD);
     console.log(parcialD);
     console.log("Hay Doctor");
