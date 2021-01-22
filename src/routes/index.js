@@ -283,4 +283,8 @@ router.post('/Busqueda', (req, res) => {
   }
 });
 
+router.post('/SolicitudesTerminadas'),(req,res)=>{
+    SoliT=fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
+}
+
 module.exports = router;
