@@ -221,6 +221,7 @@ router.post('/new-entry2', multer({
 
 router.get('/ValidarD/:CURPD', (req, res) => {
   InformacionD = datosD.filter(alumno => alumno.CURPD == req.params.CURPD);
+  console.log(InformacionD);
   // saving data
   res.redirect('/Validacion');
 });
@@ -272,10 +273,14 @@ router.post('/Busqueda', (req, res) => {
   if(buscar=="BuscarM"){
     parcialM = fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
     console.log(parcialM);
+    JsBus=JSON.parse(parcialM);
+    console.log(JsBus);
     console.log("Hay Maestro");
     res.redirect('/Busqueda');
   }else if(buscar=="BuscarD"){
     parcialD = fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')
+    JsBusD=JSON.parse(parciald);
+    console.log(JsBusD);
     console.log(parcialD);
     console.log("Hay Doctor");
     res.redirect('/BusquedaD');
@@ -283,8 +288,24 @@ router.post('/Busqueda', (req, res) => {
   }
 });
 
-router.post('/SolicitudesTerminadas'),(req,res)=>{
-    SoliT=fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
-}
+router.post('/SolicitudesTerminadas',(req,res)=>{
+  const{CURP,buscar}=req.body
+  if(buscar=="BuscarSM"){
+    SoliM=fs.readFileSync('src/views/Maestria/'+CURP+'.json', 'utf8')
+    console.log(SoliM);
+    JsSoliM=JSON.parse(SoliM);
+    console.log(JsSoliM);
+    console.log("Hay una solicitud");
+    res.redirect('/RevisarSol');
+  }else if(buscar=="BuscarSD"){
+    SoliD=fs.readFileSync('src/views/Doctorado/'+CURP+'.json', 'utf8')
+    console.log(SoliD);
+    JsSoliD=JSON.parse(SoliD);
+    console.log(JsSoliD);
+    console.log("Hay una solicitud de Doctorado");
+    res.redirect('/RevisarSolD');
+  }
+    
+});
 
 module.exports = router;

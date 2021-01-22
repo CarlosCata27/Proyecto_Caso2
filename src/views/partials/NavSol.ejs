@@ -26,12 +26,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="Busqueda" method="POST" action="/Busqueda" class="needs-validation" novalidate>
+        <form id="Busqueda" method="POST" action="/SolicitudesTerminadas" class="needs-validation" novalidate>
           <div class="form-group">
             <label for="busqueda">Si tiene una solicitud sin terminar, inserte su CURP:</label>
             <input type="text" style="text-transform: uppercase;" class="form-control" name="CURP" placeholder="ej. MAHJ280603MSPRRV09" pattern="^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B-Z]{3}[0-9,A-Z][0-9]$"required>
-            <button name="buscar" type="submit" id="buscar" value="BuscarM" class="btn btn-primary">Buscar Maestria</button>
-            <button name="buscar" type="submit" id="buscar" value="BuscarD" class="btn btn-primary">Buscar Doctorado</button>
+            <button name="buscar" type="submit" id="buscar" value="BuscarSM" class="btn btn-primary">Buscar Maestria</button>
+            <button name="buscar" type="submit" id="buscar" value="BuscarSD" class="btn btn-primary">Buscar Doctorado</button>
             </div>
         </form>
       </div>
