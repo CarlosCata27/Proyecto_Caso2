@@ -6,8 +6,61 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" href="/new-entry">Crear solicitud </a>
-            <a class="nav-link" href="/RevisarSol">Revisar solicitud enviada</a>
+            <a class="nav-link" >Revisar solicitud enviada</a>
+            <button type="button" class="open-modal" data-open="modal1">Revisar solicitud</button>
           </div>
         </div>
       </nav>
 </div>
+
+<div class="modal" id="modal1">
+  <div class="modal-dialog">
+    <header class="modal-header">
+      <p>Revisar solicitud</p>
+      <button class="close-modal" aria-label="close modal" data-close>
+        ✕  
+      </button>
+    </header>
+    <div class="modal-content">
+      <form id="Busqueda" method="POST" action="/Busqueda" class="needs-validation" style="display:block;" novalidate>
+        <div class="form-group col-md-4">
+         <p>Si tiene una solicitud sin terminar, inserte su CURP:</p>
+          <input type="text" style="text-transform: uppercase;" class="form-control" name="CURP" placeholder="ej. MAHJ280603MSPRRV09" pattern="^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][M,H][A-Z]{2}[B-Z]{3}[0-9,A-Z][0-9]$"required>
+          <input id="buscar" type="submit" value="Buscar" class="btn btn-primary">
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openEls = document.querySelectorAll("[data-open]");
+const closeEls = document.querySelectorAll("[data-close]");
+const isVisible = "is-visible";
+
+for (const el of openEls) {
+  el.addEventListener("click", function() {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add(isVisible);
+  });
+}
+
+for (const el of closeEls) {
+  el.addEventListener("click", function() {
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+  });
+}
+
+document.addEventListener("click", e => {
+  if (e.target == document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+
+document.addEventListener("keyup", e => {
+  // if we press the ESC
+  if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+    document.querySelector(".modal.is-visible").classList.remove(isVisible);
+  }
+});
+</script>
