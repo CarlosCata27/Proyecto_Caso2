@@ -276,7 +276,7 @@ router.post('/Busqueda', (req, res) => {
 
   if(buscar=="BuscarM"){
     parcialM = fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
-    console.log(parcialM);
+    // console.log(parcialM);
     JsBus=JSON.parse(parcialM);
     console.log(JsBus);
     console.log("Hay Maestro");
@@ -285,7 +285,7 @@ router.post('/Busqueda', (req, res) => {
     parcialD = fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')
     JsBusD=JSON.parse(parcialD);
     console.log(JsBusD);
-    console.log(parcialD);
+    // console.log(parcialD);
     console.log("Hay Doctor");
     res.redirect('/BusquedaD');
   
