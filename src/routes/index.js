@@ -5,9 +5,6 @@ const uuidv4 = require('uuid/v4');
 const glob = require('glob');
 let multer  = require('multer');
 
-var parcialD;
-var parcialM;
-
 //cata
 
 var datosD=[];
@@ -72,6 +69,10 @@ router.get('/RevisarSol', (req, res) => {
 
 router.get('/Busqueda', (req, res) => {
   res.render('Busqueda');
+});
+
+router.get('/BusquedaD', (req, res) => {
+  res.render('BusquedaD');
 });
 
 router.post('/new-entry', multer({
@@ -264,28 +265,22 @@ router.post('/ValidacionM', (req, res) => {
   res.redirect('/');
 });
 
-
-
 router.post('/Busqueda', (req, res) => {
 
-  const {CURP} = req.body;
-  
-  if(fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')){
+  const {CURP,buscar} = req.body;
+
+  if(buscar=="BuscarM"){
     parcialM = fs.readFileSync('src/views/MaestriaPartial/'+CURP+'.json', 'utf8')
     console.log(parcialM);
     console.log("Hay Maestro");
-  }else if(fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')){
+    res.redirect('/Busqueda');
+  }else if(buscar=="BuscarD"){
     parcialD = fs.readFileSync('src/views/DoctoradoPartial/'+CURP+'.json', 'utf8')
     console.log(parcialD);
     console.log("Hay Doctor");
-  }else{
-    
-    console.log("No se encontraron datos");
-  }
+    res.redirect('/BusquedaD');
   
-  // saving data
-  console.log("Hola ezqkizo ");
-  res.redirect('/Busqueda');
+  }
 });
 
 module.exports = router;
