@@ -75,6 +75,10 @@ router.get('/BusquedaD', (req, res) => {
   res.render('BusquedaD');
 });
 
+router.get('/RevisarSolD', (req, res) => {
+  res.render('RevisarSolD');
+});
+
 router.post('/new-entry', multer({
   storage: multer.diskStorage({
     destination:(req,file,cb) => {
